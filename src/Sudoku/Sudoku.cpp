@@ -72,11 +72,11 @@ void deal(int(*arr)[9], int u, int x, int y)
 }
 int main(int argc,char *argv[])
 {
-	//m = atoi(argv[2]); 
-	//n = atoi(argv[4]); 
+	m = atoi(argv[2]); 
+	n = atoi(argv[4]); 
 	int i, j, k;
-	fr.open("E:\\input.txt", ios::in); //读入输入文件
-	fw.open("output.txt", ios::out); //打印输出文件
+	fr.open(argv[6], ios::in); //读入输入文件
+	fw.open(argv[8], ios::out); //打印输出文件
 	if (!fr)
 	{
 		printf("The input file is empty!");
