@@ -45,19 +45,17 @@ void deal(int(*arr)[9], int u, int x, int y)
 	}//如果列号等于阶数则处理下一行
 	if (arr[x][y] != 0) //如果当前格子数值不为0
 	{
-		if (x != u - 1 && y != u - 1) //非最后一个格子
+		if (x == u - 1 && y == u - 1) //最后一个格子，所以输出并退出函数
 		{
-			deal(arr, u, x, y + 1);
+			fileout(arr, m);
 			return;
 		}//处理完后便退出
 		else
 		{
-			fileout(arr, m);
-			return;
-		} //是最后一个格子并且值不为0，所以输出并退出函数
+			deal(arr, u, x, y + 1);
+		} //非最后一个格子并且值不为0，继续处理下一个
 	}
 	int mark[10]; //存放函数mark_avai中q数组的值
-	int record = arr[x][y]; //记录传入数组的值
 	mark_avai(x, y, arr, mark); //调用函数，获取当前格子（x，y）可填数字
 	for (int k = 1; k <= u; ++k)
 	{
@@ -68,15 +66,23 @@ void deal(int(*arr)[9], int u, int x, int y)
 		else deal(arr, u, x, y + 1); //非最后一个格子则继续处理下一个格子
 		if (solved[B])return; //如果获得解则退出函数
 	}
-	arr[x][y] = record;//还原传入数组的值
 }
 int main(int argc,char *argv[])
 {
+	int i, j, k;
+	if(argc==1)
+	{
+	cin>>m>>n;
+	fr.open("C:\\Users\\LENOVO\\Desktop\\input.txt", ios::in); 
+	fw.open("C:\\Users\\LENOVO\\Desktop\\output.txt", ios::out); 
+	}
+	else
+	{
 	m = atoi(argv[2]); 
 	n = atoi(argv[4]); 
-	int i, j, k;
 	fr.open(argv[6], ios::in); //读入输入文件
 	fw.open(argv[8], ios::out); //打印输出文件
+	}
 	if (!fr)
 	{
 		printf("The input file is empty!");
